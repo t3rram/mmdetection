@@ -20,7 +20,7 @@ from .custom import CustomDataset
 @DATASETS.register_module()
 class CocoDataset(CustomDataset):
 
-    CLASSES = ('person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
+    """CLASSES = ('person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
                'train', 'truck', 'boat', 'traffic light', 'fire hydrant',
                'stop sign', 'parking meter', 'bench', 'bird', 'cat', 'dog',
                'horse', 'sheep', 'cow', 'elephant', 'bear', 'zebra', 'giraffe',
@@ -33,7 +33,8 @@ class CocoDataset(CustomDataset):
                'potted plant', 'bed', 'dining table', 'toilet', 'tv', 'laptop',
                'mouse', 'remote', 'keyboard', 'cell phone', 'microwave',
                'oven', 'toaster', 'sink', 'refrigerator', 'book', 'clock',
-               'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush')
+               'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush')"""
+    CLASSES = ('aerosol','conserve_ronde','conserve_rectangulaire','canette','sirops','opercule', "autre_acier")
 
     def load_annotations(self, ann_file):
         """Load annotation from COCO style annotation file.
