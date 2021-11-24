@@ -101,7 +101,7 @@ def main():
     new_out = change_result_format(outputs)
 
     conf_matrix = ConfusionMatrix(nc)
-    for i, item in enumerate(dataset):
+    """for i, item in enumerate(dataset):
         file_name = labels[i]['img_metas'][0].data['ori_filename']
         print(item)
         #print(item['gt_labels'])
@@ -123,6 +123,17 @@ def main():
             t[idx,4] = (y + h/2)*height
             
         conf_matrix.process_batch(new_out[i], t)
+        conf_matrix.plot(save_dir=args.work_dir, names=list(cfg.classes))"""
+    for k,img_ann in labels.coco.img_ann_map.items():    
+        t = torch.zeros((len(img_ann),5))
+        for idx, bbox in enumerate(img_ann):
+            t[idx,0] = int(labels.cat2label[bbox["category_id"]])
+            t[idx,1] = bbox["bbox"][0]
+            t[idx,2] = bbox["bbox"][1]
+            t[idx,3] = bbox["bbox"][0] + bbox["bbox"][2]
+            t[idx,4] = bbox["bbox"][1] + bbox["bbox"][3]
+            
+        conf_matrix.process_batch(new_out[int(k)], t)
         conf_matrix.plot(save_dir=args.work_dir, names=list(cfg.classes))
        
 
